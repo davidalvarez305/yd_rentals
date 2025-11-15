@@ -13,9 +13,7 @@ export default function Orders() {
                     return response.json()
                 }
             })
-            .then(data => {
-                setOrders(data.data);
-            });
+            .then(data => setOrders(data));
     }, []);
 
     useEffect(() => handleGetOrders(), [handleGetOrders]);

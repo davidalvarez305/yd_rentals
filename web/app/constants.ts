@@ -1,5 +1,5 @@
-import { getEnvVar } from "@/utils";
+const isProd = process.env.NODE_ENV === 'production';
 
-export const API_ROOT = getEnvVar('NEXT_PUBLIC_API_ROOT');
-
-export const ORDERS_ENDPOINT = `${API_ROOT}/api/v1/order`;
+// Server Routes
+export const API_ROOT = isProd ? '' : 'http://127.0.0.1:8000';
+export const ORDERS_ENDPOINT = `${API_ROOT}/api/v1/orders`;
