@@ -22,18 +22,13 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=150, unique=True)
+    external_id = models.UUIDField(unique=True, db_index=True, default=uuid.uuid4, editable=False)    
+
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20, unique=True)
-    forward_phone_number = models.CharField(max_length=20, unique=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
 
-    events = models.ManyToManyField('Event', related_name='staff', through='EventStaff')
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number', 'forward_phone_number']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
 
     objects = UserManager()
 
