@@ -1,7 +1,7 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = ''
+SECRET_KEY = 'asdasdasdadsa'
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -58,6 +58,9 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
     ]
 }
 
@@ -81,6 +84,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+AUTH_USER_MODEL = 'core.User'
 
 # Static
 STATIC_URL = 'static/'
